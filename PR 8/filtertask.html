@@ -1,0 +1,240 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container">
+    <div class="row pt-5 pb-5">
+        <div class="col-md-1">
+            <button onclick="viewAllRecord()" class="btn btn-primary">All</button>
+        </div>
+        <div class="col-md-1">
+            <button onclick="GujaratTitansData()" class="btn btn-primary">Gujarat Titans</button>
+        </div>
+        <div class="col-md-1">
+            <button onclick="PunjabKingsData()" class="btn btn-primary">Punjab Kings</button>
+        </div>
+        <div class="col-md-1">
+            <button onclick="KolkataKnightRidersData()" class="btn btn-primary">Kolkata Knight Riders</button>
+        </div>
+        <div class="col-md-1">
+            <button onclick="MumbaiIndiansData()" class="btn btn-primary">Mumbai Indians</button>
+        </div>
+    </div>
+
+    <div class="row" id="allrecord">
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+    let data = [
+        {
+            name: "Shaun Marsh",
+            price: 616,
+            image: "https://static.indiatvnews.com/ins-web/images/gettyimages-1066119616-1550330373.jpg",
+            category: "Punjab Kings"
+        },
+        {
+            name: "KL Rahul	",
+            price: 670,
+            image: "https://e0.pxfuel.com/wallpapers/485/737/desktop-wallpaper-k-l-rahul-kl-rahul.jpg",
+            category: "Punjab Kings"
+        },
+        {
+            name: "Robin Uthappa",
+            price: 660,
+            image: "https://e1.pxfuel.com/desktop-wallpaper/407/585/desktop-wallpaper-robin-uthappa.jpg",
+            category: "Kolkata Knight Riders"
+        },
+        {
+            name: "Rinku Singh",
+            price: 670,
+            image: "https://ngs-space1.sgp1.digitaloceanspaces.com/am/uploads/mediaGallery/image/1651561746947.jpg-org",
+            category: "Kolkata Knight Riders"
+        },
+        {
+            name: "David Warner	",
+            price: 562,
+            image: "https://w0.peakpx.com/wallpaper/721/69/HD-wallpaper-david-warner-cricket-indian-premier-league-ipl-orange-army-srh-sunrisers-hyderabad.jpg",
+            category: "Sunrisers Hyderabad"
+        },
+
+        {
+            name: "David Miller",
+            price: 820,
+            image: "https://wallpapers.com/images/featured/dw7759uixsdp0xze.jpg",
+            category: "Gujarat Titans"
+        },
+        {
+            name: "Hardik Pandya",
+            price: 900,
+            image: "https://e0.pxfuel.com/wallpapers/168/584/desktop-wallpaper-ipl-final-rajasthan-royals-hardik-pandya-gujarat-titans-trophy.jpg",
+            category: "Gujarat Titans"
+        },
+        {
+            name: "Ishan Kishan",
+            price: 500,
+            image: "https://e0.pxfuel.com/wallpapers/289/106/desktop-wallpaper-ishan-kishan-latest-ishan-kishan-gallery-of-actor-ishan-kishan-thumbnail.jpg",
+            category: "Mumbai Indians"
+        },
+        {
+            name: "Suryakumar Yadav",
+            price: 550,
+            image: "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202210/Surya_AP_0_x.jpeg?VersionId=4kd4G1psHheMNkuVLT0gflBFDV7_QCYm",
+            category: "Mumbai Indians"
+        },
+        {
+            name: "Ruturaj Gaikwad",
+            price: 635,
+            image: "https://cdn.wallpapersafari.com/63/23/FvoDmU.jpg",
+            category: "Chennai Super Kings"
+        },
+        {
+            name: "MS Dhoni",
+            price: 863,
+            image: "https://w0.peakpx.com/wallpaper/908/670/HD-wallpaper-dhoni-sports-uniform-cricket-ms-dhoni-mahendra-singh-dhoni-thumbnail.jpg",
+            category: "Chennai Super Kings"
+        },
+        {
+            name: "Kane Williamson",
+            price: 735,
+            image: "data:image/jpeg;base64,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",
+            category: "Sunrisers Hyderabad"
+        },
+        {
+            name: "Virat Kohli",
+            price: 333,
+            image: "https://i.pinimg.com/474x/de/e7/39/dee739498eec49181572f1a8d7e57973.jpg",
+            category: "Royal Challengers Bangalore"
+        },
+        {
+            name: "Faf du Plessis",
+            price: 422,
+            image: "https://static.india.com/wp-content/uploads/2022/04/Faf-du-Plessis.jpg",
+            category: "Royal Challengers Bangalore"
+        },
+    ];
+
+
+    viewAllRecord();
+    function viewAllRecord() {
+        let tbl = "";
+        data.map((val) => {
+            tbl += `
+                <div class="col-md-4 pb-4">
+                    <div class="card">
+                        <img src="${val.image}" style="height:700px;object-fit:cover" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">${val.name}</h5>
+                        <p class="card-text">${val.category}</p>
+                        <a href="#" class="btn btn-primary">Order</a>
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+
+        document.getElementById('allrecord').innerHTML = tbl;
+    }
+
+    function GujaratTitansData() {
+        let category = "Gujarat Titans";
+        let tbl = "";
+        data.map((val) => {
+
+            if (val.category == category) {
+                tbl += `
+                    <div class="col-md-4 pb-4">
+                        <div class="card">
+                            <img src="${val.image}" style="height:700px;object-fit:cover" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">${val.name}</h5>
+                            <p class="card-text">${val.category}</p>
+                            <a href="#" class="btn btn-primary">Order</a>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+
+        })
+        document.getElementById('allrecord').innerHTML = tbl;
+    }
+
+    function PunjabKingsData() {
+        let category = "Punjab Kings";
+        let tbl = "";
+        data.map((val) => {
+
+            if (val.category == category) {
+                tbl += `
+                    <div class="col-md-4 pb-4">
+                        <div class="card">
+                            <img src="${val.image}" style="height:700px;object-fit:cover" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">${val.name}</h5>
+                            <p class="card-text">${val.category}</p>
+                            <a href="#" class="btn btn-primary">Order</a>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+
+        })
+        document.getElementById('allrecord').innerHTML = tbl;
+    }
+
+    function KolkataKnightRidersData() {
+        let category = "Kolkata Knight Riders";
+        let tbl = "";
+        data.map((val) => {
+
+            if (val.category == category) {
+                tbl += `
+                    <div class="col-md-4 pb-4">
+                        <div class="card">
+                            <img src="${val.image}" style="height:700px;object-fit:cover" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">${val.name}</h5>
+                            <p class="card-text">${val.category}</p>
+                            <a href="#" class="btn btn-primary">Order</a>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+
+        })
+        document.getElementById('allrecord').innerHTML = tbl;
+    }
+
+    function MumbaiIndiansData() {
+        let category = "Mumbai Indians";
+        let tbl = "";
+        data.map((val) => {
+
+            if (val.category == category) {
+                tbl += `
+                    <div class="col-md-4 pb-4">
+                        <div class="card">
+                            <img src="${val.image}" style="height:700px;object-fit:cover" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">${val.name}</h5>
+                            <p class="card-text">${val.category}</p>
+                            <a href="#" class="btn btn-primary">Order</a>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+
+        })
+        document.getElementById('allrecord').innerHTML = tbl;
+    }
+
+
+
+
+</script>
